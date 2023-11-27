@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gamepad 3D configurator</title>
+
+    <!-- Babylon.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+    <script src="https://assets.babylonjs.com/generated/Assets.js"></script>
+    <script src="https://preview.babylonjs.com/ammo.js"></script>
+    <script src="https://preview.babylonjs.com/cannon.js"></script>
+    <script src="https://preview.babylonjs.com/Oimo.js"></script>
+    <script src="https://preview.babylonjs.com/earcut.min.js"></script>
+    <script src="https://preview.babylonjs.com/babylon.js"></script>
+    <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+    <script src="https://preview.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+    <script src="https://preview.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
+    <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
+    <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
+    <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+    <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="customLoadingScreenDiv">
+      <lottie-player
+        src="joystick.json"
+        id="loadI"
+        class="loadingL"
+        background="transparent"
+        speed="1"
+        loop
+        autoplay
+      ></lottie-player>
+      <div id="loadingPercentages"></div>
+    </div>
+    <div id="title">
+      <h1>Create your design</h1>
+      <div></div>
+    </div>
+    <button id="reset">Reset</button>
+
+    <main>
+      <canvas id="renderCanvas"></canvas>
+
+      <div id="midle">
+        <div id="part">
+          <div class="parts" id="2">
+            <img
+              data-v-22c513e8=""
+              src="https://cdn.spectrumcustomizer.com/xbox/v3/frontend/img/body-color-active.svg"
+              alt="Body"
+            />
+          </div>
+          <div class="parts" id="6">
+            <img
+              data-v-22c513e8=""
+              src="https://cdn.spectrumcustomizer.com/xbox/v3/frontend/img/back-color-inactive.svg"
+              alt="Back"
+            />
+          </div>
+          <div class="parts" id="36">
+            <img
+              data-v-22c513e8=""
+              src="https://cdn.spectrumcustomizer.com/xbox/v3/frontend/img/thumbsticks-inactive.svg"
+              alt="Thumbsticks"
+            />
+          </div>
+
+          <div class="parts" id="43">
+            <img
+              data-v-22c513e8=""
+              src="https://cdn.spectrumcustomizer.com/xbox/v3/frontend/img/bumpers-color-inactive.svg"
+              alt="Bumpers"
+            />
+          </div>
+          <div class="parts" id="32">
+            <img
+              data-v-22c513e8=""
+              src="https://cdn.spectrumcustomizer.com/xbox/v3/frontend/img/triggers-color-inactive.svg"
+              alt="Triggers"
+            />
+          </div>
+          <div class="parts" id="11">
+            <img
+              data-v-22c513e8=""
+              src="https://cdn.spectrumcustomizer.com/xbox/v3/frontend/img/abxy-color-inactive.svg"
+              alt="ABXY"
+            />
+          </div>
+          <div class="parts" id="33">
+            <img
+              data-v-22c513e8=""
+              src="https://cdn.spectrumcustomizer.com/xbox/v3/frontend/img/d-pad-inactive.svg"
+              alt="D-Pad"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div id="side">
+        <h1 style="color: white; align-self: flex-start; padding-left: 10px">
+          Body
+        </h1>
+        <div id="colorBlock">
+          <div
+            id="#8a0606"
+            class="color"
+            style="background-color: #f01b1b"
+          ></div>
+          <div
+            id="#a13102"
+            class="color"
+            style="background-color: #ff5208"
+          ></div>
+          <div
+            id="#a17402"
+            class="color"
+            style="background-color: #ffb803"
+          ></div>
+          <div
+            id="#172102"
+            class="color"
+            style="background-color: #384e08"
+          ></div>
+          <div
+            id="#077d17"
+            class="color"
+            style="background-color: #00c800"
+          ></div>
+          <div
+            id="#016137"
+            class="color"
+            style="background-color: #05bb87"
+          ></div>
+          <div
+            id="#07097d"
+            class="color"
+            style="background-color: #020aff"
+          ></div>
+          <div
+            id="#239ca1"
+            class="color"
+            style="background-color: #4abdff"
+          ></div>
+          <div
+            id="#47086e"
+            class="color"
+            style="background-color: #4f0094"
+          ></div>
+          <div
+            id="#6c086e"
+            class="color"
+            style="background-color: #d300de"
+          ></div>
+          <div
+            id="#330011"
+            class="color"
+            style="background-color: #de004a"
+          ></div>
+          <div id="#9e9d9e" class="color" style="background-color: #ffff"></div>
+          <div
+            id="#1c1b1c"
+            class="color"
+            style="background-color: #6c6c6c"
+          ></div>
+          <div
+            id="#050505"
+            class="color"
+            style="
+              background-color: #000000;
+              color: white;
+              box-shadow: inset -1px 1px 90px -68px rgba(255, 255, 255, 1);
+            "
+          ></div>
+        </div>
+        <div id="patternTitle">
+          <h3 style="color: white">Patterns</h3>
+          <h3 style="color: rgb(66, 151, 12)">+ 5 $</h3>
+        </div>
+
+        <div id="patternBlock">
+          <div
+            id="camo.png"
+            class="pattern"
+            style="
+              background-image: url('images/camo.png');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternT.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternT.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="simple.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/simple.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternG.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternG.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternCamo.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternCamo.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternB.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternB.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternColorfull.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternColorfull.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternBL.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternBL.jpg');
+              background-size: 180%;
+            "
+          ></div>
+
+          <div
+            id="patternS.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternS.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternE.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternE.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternBLB.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternBLB.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternH.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternH.jpg');
+              background-size: 180%;
+            "
+          ></div>
+
+          <div
+            id="patternP.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternP.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternO.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternO.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternM.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternM.jpg');
+              background-size: 180%;
+            "
+          ></div>
+          <div
+            id="patternR.jpg"
+            class="pattern"
+            style="
+              background-image: url('images/patternR.jpg');
+              background-size: 180%;
+            "
+          ></div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <h3 style="color: rgb(169, 169, 169); padding-left: 10%">
+        <div>
+          <div style="font-size: 0.6em">Base</div>
+          <div>50 $</div>
+        </div>
+        <div>+</div>
+        <div id="addOn" style="color: rgb(66, 151, 12)">
+          <div style="font-size: 0.6em">Add-ons</div>
+          <div>0 $</div>
+        </div>
+
+        <div>=</div>
+        <div id="finalPrice" style="color: rgb(255, 255, 255)">
+          <div style="font-size: 0.6em">Subtotal</div>
+          <div>50 $</div>
+        </div>
+      </h3>
+    </footer>
+
+    <script src="js.js"></script>
+  </body>
+</html>
